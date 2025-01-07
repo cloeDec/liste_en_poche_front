@@ -1,25 +1,23 @@
-import api from './api';
+import axios from "axios";
 
-// Créer une liste
-export const createList = async (data: { userId: number; name: string }) => {
-  const response = await api.post('/lists/create', data);
-  return response.data;
-};
+function fetchListe() {
+  return axios.get("http://localhost:3000/lists");
+}
 
-// Récupérer les listes d’un utilisateur
-export const getUserLists = async (userId: number) => {
-  const response = await api.get(`/lists/user/${userId}`);
-  return response.data;
-};
+// function addListe(list: any) {
+//   return axios.post("http://localhost:3000/lists", list, {
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+// }
 
-// Ajouter un produit à une liste
-export const addProductToList = async (data: { listId: number; name: string; quantity: number; unit: string }) => {
-  const response = await api.post('/lists/add-product', data);
-  return response.data;
-};
+// function deleteListeById(IDListe: string) {
+//   return axios.delete("http://localhost:3000/lists/" + IDListe);
+// }
 
-// Supprimer une liste
-export const deleteList = async (id: number) => {
-  const response = await api.delete(`/lists/delete/${id}`);
-  return response.data;
+export default {
+  fetchListe,
+  // addListe,
+  // deleteListeById,
 };
