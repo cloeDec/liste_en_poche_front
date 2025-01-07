@@ -1,0 +1,125 @@
+/* Couleurs principales */
+:root {
+    --pink-fluo: #ff007f;
+    --white: #ffffff;
+    --black: #121212;
+    --gray-light: #f5f5f5;
+    --gray-dark: #2c2c2c;
+  }
+  
+  /* Styles globaux */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--gray-dark);
+    color: var(--white);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  a {
+    color: var(--pink-fluo);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: var(--white);
+  }
+  
+  /* Boutons généraux */
+  button {
+    background-color: var(--pink-fluo);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background-color: var(--white);
+    color: var(--pink-fluo);
+    transform: scale(1.1);
+  }
+  
+  /* Bouton Connexion (centré) */
+  .button-connexion {
+    display: block;
+    margin: 20px auto;
+  }
+  
+  /* Bouton Créer une liste (centré) */
+  .button-create-list {
+    display: block;
+    margin: 20px auto;
+  }
+  
+  /* Inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 10px auto;
+    display: block;
+    border: 2px solid var(--pink-fluo);
+    border-radius: 5px;
+    background-color: var(--gray-dark);
+    color: var(--white);
+    font-size: 14px;
+  }
+  
+  input::placeholder {
+    color: var(--gray-light);
+    font-size: 12px;
+  }
+  
+  input:focus {
+    border-color: var(--white);
+    outline: none;
+  }
+  
+  /* Conteneur principal */
+  .container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--black);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Titres */
+  h1, h2, h3 {
+    color: var(--pink-fluo);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--black);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar .brand {
+    color: var(--pink-fluo);
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .navbar .logout-button {
+    float: right;
+    margin-left: auto;
+  }
+  

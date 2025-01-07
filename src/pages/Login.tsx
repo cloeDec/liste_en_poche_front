@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -10,35 +15,38 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
-      const response = await fetch('http://localhost:5000/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('token', data.token);
-        setMessage('Connexion réussie !');
-      } else {
-        const data = await response.json();
-        setMessage(data.message || 'Erreur lors de la connexion');
-      }
-    } catch (error) {
-      setMessage('Erreur réseau !');
+      const { token } = await loginUser(formData);
+      localStorage.setItem('token', token);
+      login();
+      navigate('/dashboard');
+    } catch (err) {
+      setMessage('Erreur de connexion.');
     }
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Connexion</h1>
       <p>{message}</p>
       <form onSubmit={handleSubmit}>
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Mot de passe" value={formData.password} onChange={handleChange} required />
-        <button type="submit">Se connecter</button>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+        <button type="submit" className="button-connexion">Se connecter</button>
       </form>
     </div>
   );
